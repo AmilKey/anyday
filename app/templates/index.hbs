@@ -1,0 +1,151 @@
+<div class="left-column">
+  <strong>
+    {{carriers.length}}
+  </strong>
+
+  <ul class='menu'>
+    {{#each carriers as |carrier|}}
+      <li {{action 'setCarrier' carrier}} class='menu__item'>
+        {{carrier.Name}} {{carrier.Fares.length}}
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class="center-column">
+  {{!-- рейсы --}}
+  <h4>Fares</h4>
+  <ul>
+    {{#each fares as |fare|}}
+      <li>
+          <ul>
+            <li>BonusAllowed {{fare.BonusAllowed}} </li>
+            <li>TimeToTravel {{fare.TimeToTravel}} </li>
+            <li>TravelDuration {{fare.TravelDuration}}</li>
+            <li>TotalAmount {{fare.TotalAmount}}</li>
+            <li>TotalAmountRub {{fare.TotalAmountRub}}</li>
+            <li>TotalAmountEur {{fare.TotalAmountEur}}</li>
+            <li>AdultAmountCeiledRub {{fare.AdultAmountCeiledRub}}</li>
+            <li>ChildrenAmountCeiledRub {{fare.ChildrenAmountCeiledRub}}</li>
+            <li>BabyAmountCeiledRub {{fare.BabyAmountCeiledRub}}</li>
+            <li>IsLowCost {{fare.IsLowCost}}</li>
+            <li>PromoApplied {{fare.PromoApplied}}</li>
+            <li>ConfirmState {{fare.ConfirmState}}</li>
+            <li>TotalAmountWithoutSale {{fare.TotalAmountWithoutSale}}</li>
+            <li>FutureCrossSaleApplicable {{fare.FutureCrossSaleApplicable}}</li>
+            <li>MinAvailSeats {{fare.MinAvailSeats}}</li>
+          </ul>
+          {{!-- бонусы --}}
+          <h4>BonusLevel</h4>
+          <ul>
+            {{#each fare.BonusLevel as |bonus|}}
+              <li>
+
+                <ul>
+                  <li>Name {{bonus.Name}}</li>
+                  <li>Amount {{bonus.Amount}}</li>
+                  <li>CurrencyAmount</li>
+                  <li> EUR {{bonus.CurrencyAmount.EUR}}</li>
+                  <li> USD {{bonus.CurrencyAmount.USD}}</li>
+                  <li> RUB {{bonus.CurrencyAmount.RUB}}</li>
+                  <li> CHF {{bonus.CurrencyAmount.CHF}}</li>
+                  <li> UAH {{bonus.CurrencyAmount.UAH}}</li>
+                </ul>
+
+              </li>
+            {{/each}}
+          </ul>
+
+          {{!-- направления --}}
+          <h4>Directions</h4>
+          <ul>
+            {{#each fare.Directions as |direction|}}
+              <li>
+
+                {{!-- Points --}}
+                <h4>Points</h4>
+                <ul>
+                  {{#each direction.Points as |point|}}
+                    <li>
+
+                      <ul>
+                        <li>DepartureCode {{point.DepartureCode}}</li>
+                        <li>DepartureTerminal {{point.DepartureTerminal}}</li>
+                        <li>ArrivalTerminal {{point.ArrivalTerminal}}</li>
+                        <li>ArrivalCode</li>
+                        <li>ArrivalCode Name {{point.ArrivalCode.Name}}</li>
+                        <li>ArrivalCode City {{point.ArrivalCode.City}}</li>
+                        <li>ArrivalCode Country {{point.ArrivalCode.Country}}</li>
+                        <li>ArrivalCode CountryCode {{point.ArrivalCode.CountryCode}}</li>
+                        <li>ArrivalCode CityCode {{point.ArrivalCode.CityCode}}</li>
+                        <li>ArrivalCode Latitude {{point.ArrivalCode.Latitude}}</li>
+                        <li>ArrivalCode Longitude {{point.ArrivalCode.Longitude}}</li>
+
+                      </ul>
+                    </li>
+                  {{/each}}
+                </ul>
+
+                {{!-- Variants --}}
+                <h4>Variants</h4>
+                <ul>
+                  {{#each direction.Variants as |variant|}}
+                    <li>
+
+                      <ul>
+                        <li>TravelTime {{variant.TravelTime}}</li>
+                        <li>ConfirmState {{variant.ConfirmState}}</li>
+                        <li>AtcSupported {{variant.AtcSupported}}</li>
+                      </ul>
+
+                      {{!-- Legs --}}
+                      <h4>Legs</h4>
+                      <ul>
+                        {{#each variant.Legs as |leg|}}
+                          <li>
+
+                            <ul>
+                              <li>Class {{leg.Class}}</li>
+                              <li>ReservationType {{leg.ReservationType}}</li>
+                              <li>FlightNumber {{leg.FlightNumber}}</li>
+                              <li>FlightDuration {{leg.FlightDuration}}</li>
+                              <li>DepartureDate {{leg.DepartureDate}}</li>
+                              <li>ArrivalDate {{leg.ArrivalDate}}</li>
+                              <li>DurationOfChange {{leg.DurationOfChange}}</li>
+                              <li>Stops {{leg.Stops}}</li>
+                              <li>Plane Name {{leg.Plane.Name}}</li>
+
+                            </ul>
+
+                          </li>
+                        {{/each}}
+                      </ul>
+
+                    </li>
+                  {{/each}}
+                </ul>
+
+              </li>
+            {{/each}}
+          </ul>
+
+      </li>
+    {{else}}
+      Select airline!
+    {{/each}}
+  </ul>
+</div>
+
+<div class="right-column">
+  {{!-- запросы --}}
+    <h4>every minute a new request</h4>
+    <ul>
+      {{#each requests as |request|}}
+        <li>
+          <strong>
+            {{request.IdSynonym}} {{request.status}} %
+          </strong>
+        </li>
+      {{/each}}
+    </ul>
+</div>

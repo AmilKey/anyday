@@ -15,3 +15,15 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
+
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
+.idea
+.directory
+*.sublime-*
